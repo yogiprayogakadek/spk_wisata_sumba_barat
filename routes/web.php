@@ -7,6 +7,7 @@ use App\Http\Controllers\Main\NilaiAlternatifController;
 use App\Http\Controllers\Main\PerhitunganController;
 use App\Http\Controllers\Main\SubKriteriaController;
 use App\Http\Controllers\Main\WisataController;
+use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
+    });
+
+    // User
+    Route::controller(UserController::class)->prefix('/user')->name('user.')->group(function () {
+        Route::middleware(['checkRole:admin'])->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/show/{id}', 'show')->name('show');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::delete('/delete/{id}', 'delete')->name('delete');
+        });
+
+        Route::get('/change-password', 'showChangePassword')->name('change.password');
+        Route::post('/change-password', 'updatePassword')->name('update.password');
     });
 
     // Perhitungan

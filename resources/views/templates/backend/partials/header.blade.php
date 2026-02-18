@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="message-body">
-                                        {{-- <a href="https://bootstrapdemos.wrappixel.com/materialM/dist/default-sidebar/page-user-profile.html"
+                                        <a href="{{ route('user.change.password') }}"
                                             class="py-8 px-7 mt-8 d-flex align-items-center">
                                             <span
                                                 class="d-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded round">
@@ -75,10 +75,10 @@
                                             </span>
                                             <div class="w-75 v-middle ps-3">
                                                 <h5 class="mb-1 fs-3 fw-medium">My Profile</h5>
-                                                <span class="fs-2 d-block text-body-secondary">Account
-                                                    Settings</span>
+                                                <span class="fs-2 d-block text-body-secondary">Ganti Password</span>
                                             </div>
                                         </a>
+                                        {{--
                                         <a href="https://bootstrapdemos.wrappixel.com/materialM/dist/default-sidebar/app-email.html"
                                             class="py-8 px-7 d-flex align-items-center">
                                             <span

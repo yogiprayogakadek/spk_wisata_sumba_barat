@@ -137,6 +137,16 @@
                             </li>
                         </ul>
                     </li>
+
+                    {{-- User --}}
+                    @if (auth()->user()->role === 'admin')
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('user.index') }}" aria-expanded="false">
+                                <iconify-icon icon="solar:users-group-rounded-bold-duotone"></iconify-icon>
+                                <span class="hide-menu">User Management</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
 
