@@ -44,10 +44,19 @@
                             <p class="card-subtitle mb-0">Nilai alternatif</p>
                         </div>
                     </div>
-                    {{-- <a href="{{ route('wisata.create') }}" class="btn btn-primary hstack gap-2 px-4 shadow-primary">
-                        <iconify-icon icon="solar:add-square-line-duotone" class="fs-5"></iconify-icon>
-                        <span class="d-none d-sm-block">Tambah Wisata</span>
-                    </a> --}}
+                    <div class="d-flex align-items-center gap-3">
+                        @if (auth()->user()->role === 'admin')
+                            <button type="button" id="auto-fill"
+                                class="btn btn-outline-primary d-flex align-items-center gap-2 px-3 py-2">
+                                <iconify-icon icon="solar:magic-stick-3-bold-duotone" class="fs-5"></iconify-icon>
+                                <span>Isi Otomatis</span>
+                            </button>
+                        @endif
+                        {{-- <a href="{{ route('wisata.create') }}" class="btn btn-primary hstack gap-2 px-4 shadow-primary">
+                            <iconify-icon icon="solar:add-square-line-duotone" class="fs-5"></iconify-icon>
+                            <span class="d-none d-sm-block">Tambah Wisata</span>
+                        </a> --}}
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('nilai.alternatif.store') }}" method="POST" id="form">
@@ -121,4 +130,30 @@
             </div>
         </div>
     </div>
+@push('scripts')
+    <script>
+        document.getElementById('auto-fill')?.addEventListener('click', function() {
+            // Select all number inputs
+            const numberInputs = document.querySelectorAll('#form input[type="number"]');
+            numberInputs.forEach(input => {
+                // Random value between 1 and 100
+                input.value = Math.floor(Math.random() * 100) + 1;
+            });
+
+            // Select all select inputs
+            const selectInputs = document.querySelectorAll('#form select');
+            selectInputs.forEach(select => {
+                const options = Array.from(select.options).filter(opt => opt.value !== "");
+                if (options.length > 0) {
+                    const randomOption = options[Math.floor(Math.random() * options.length)];
+                    select.value = randomOption.value;
+                }
+            });
+
+            toastr.info("Form berhasil diisi secara otomatis", "Info", {
+                timeOut: 2000
+            });
+        });
+    </script>
+@endpush
 @endsection
