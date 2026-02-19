@@ -66,6 +66,30 @@
 
         <!-- Additional Scripts from Child Views -->
         @stack('scripts')
+
+        @if (session('show_device_alert'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    if (window.innerWidth < 1024) {
+                        Swal.fire({
+                            title: 'Pengalaman Terbaik',
+                            text: 'Halo! Aplikasi SPK Wisata Sumba Barat akan memberikan pengalaman yang jauh lebih maksimal jika diakses melalui PC atau Laptop. Yuk, coba buka di sana untuk fitur yang lebih lengkap!',
+                            icon: 'info',
+                            confirmButtonText: 'Saya Mengerti',
+                            confirmButtonColor: '#5d87ff',
+                            background: '#fff',
+                            color: '#2a3547',
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        });
+                    }
+                });
+            </script>
+        @endif
 </body>
 
 </html>

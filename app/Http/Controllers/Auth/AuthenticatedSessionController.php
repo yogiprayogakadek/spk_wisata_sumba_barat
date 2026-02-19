@@ -27,6 +27,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $request->session()->flash('show_device_alert', true);
 
         $role = $request->user()->role;
         $redirectRoute = $role === 'admin' ? route('dashboard.admin') : route('dashboard.user');
