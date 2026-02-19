@@ -12,6 +12,11 @@ class HistoriPerhitungan extends Model
         'tanggal'
     ];
 
+    protected $casts = [
+        'user_id' => 'integer',
+        'tanggal' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -41,7 +41,7 @@ class NilaiAlternatifController extends Controller
             'nilai' => 'required|array',
             'nilai.*.*.*' => 'required',
         ], [
-            'nilai.*.*.*.required' => 'Fiel ini wajib diisi',
+            'nilai.*.*.*.required' => 'Field ini wajib diisi',
         ]);
 
         try {
