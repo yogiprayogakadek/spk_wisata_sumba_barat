@@ -147,6 +147,15 @@
                             </a>
                         </li>
                     @endif
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('panduan') }}" aria-expanded="false">
+                            <span>
+                                <iconify-icon icon="solar:book-bookmark-bold-duotone" class="icon"></iconify-icon>
+                            </span>
+                            <span class="hide-menu">Panduan Penggunaan</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 

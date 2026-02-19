@@ -52,12 +52,19 @@ class DashboardController extends Controller
 
     public function userIndex()
     {
+        $user = auth()->user();
         $wisataList     = Wisata::where('is_active', true)->latest()->get(['id', 'nama', 'alamat', 'rating_google', 'is_active']);
         $kriteria       = Kriteria::with('subKriteria')->get(['id', 'nama', 'sifat', 'bobot']);
-        $historiTerbaru = HistoriPerhitungan::latest()->take(5)->get(['id', 'tanggal', 'created_at']);
+        
+        $historiQuery = HistoriPerhitungan::query();
+        if ($user->role !== 'admin') {
+            $historiQuery->where('user_id', $user->id);
+        }
+
+        $historiTerbaru = (clone $historiQuery)->latest()->take(5)->get(['id', 'tanggal', 'created_at']);
         $totalWisata    = $wisataList->count();
         $totalKriteria  = $kriteria->count();
-        $totalHistori   = HistoriPerhitungan::count();
+        $totalHistori   = $historiQuery->count();
 
         return view('main.dashboard.user.index', compact(
             'wisataList',
@@ -67,5 +74,10 @@ class DashboardController extends Controller
             'totalKriteria',
             'totalHistori'
         ));
+    }
+
+    public function panduan()
+    {
+        return view('main.panduan.index');
     }
 }

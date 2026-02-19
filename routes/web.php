@@ -83,7 +83,10 @@ Route::middleware('auth')->group(function () {
     Route::controller(PerhitunganController::class)->prefix('/perhitungan')->name('perhitungan.')->group(function () {
         Route::get('/simple-addictive-weighting/{id}', 'saw')->name('saw');
     });
+
+    Route::get('/panduan-aplikasi', [DashboardController::class, 'panduan'])->name('panduan');
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
