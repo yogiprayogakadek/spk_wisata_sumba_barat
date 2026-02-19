@@ -78,19 +78,29 @@
                                                 <td>
                                                     <input type="number"
                                                         name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
-                                                        class="form-control" placeholder="Masukkan nilai...">
+                                                        class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror"
+                                                        placeholder="Masukkan nilai..."
+                                                        value="{{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) }}">
+                                                    @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </td>
                                             @else
                                                 <td>
                                                     <select
                                                         name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
-                                                        class="form-control">
+                                                        class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror">
                                                         <option value="">-- Pilih --</option>
                                                         @foreach ($k->subKriteria as $sub)
-                                                            <option value="{{ $sub->id }}">{{ $sub->nama }}
+                                                            <option value="{{ $sub->id }}"
+                                                                {{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) == $sub->id ? 'selected' : '' }}>
+                                                                {{ $sub->nama }}
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </td>
                                             @endif
                                         @endforeach

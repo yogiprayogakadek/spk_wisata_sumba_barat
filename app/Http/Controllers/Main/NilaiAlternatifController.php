@@ -37,6 +37,13 @@ class NilaiAlternatifController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nilai' => 'required|array',
+            'nilai.*.*.*' => 'required',
+        ], [
+            'nilai.*.*.*.required' => 'Fiel ini wajib diisi',
+        ]);
+
         try {
             $histori = $this->historiPerhitunganService->create($request->nilai);
 
