@@ -52,61 +52,63 @@
                 <div class="card-body">
                     <form action="{{ route('nilai.alternatif.store') }}" method="POST" id="form">
                         @csrf
-                        <table class="table table-bordered table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th rowspan='2'>No</th>
-                                    <th rowspan='2'>Nama Alternatif</th>
-                                    <th colspan="{{ count($kriteria) }}" class="text-center">Nilai Kriteria</th>
-                                </tr>
-                                <tr>
-                                    @forelse ($kriteria as $krit)
-                                        <th>{{ $krit->nama }}</th>
-                                    @empty
-                                        <th colspan="{{ count($kriteria) }}">Tidak ada data kriteria</th>
-                                    @endforelse
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($alternatif as $alter)
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $alter->nama }}</td>
-                                        @foreach ($kriteria as $k)
-                                            @if ($k->sifat == 'cost')
-                                                <td>
-                                                    <input type="number"
-                                                        name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
-                                                        class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror"
-                                                        placeholder="Masukkan nilai..."
-                                                        value="{{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) }}">
-                                                    @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </td>
-                                            @else
-                                                <td>
-                                                    <select
-                                                        name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
-                                                        class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror">
-                                                        <option value="">-- Pilih --</option>
-                                                        @foreach ($k->subKriteria as $sub)
-                                                            <option value="{{ $sub->id }}"
-                                                                {{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) == $sub->id ? 'selected' : '' }}>
-                                                                {{ $sub->nama }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </td>
-                                            @endif
-                                        @endforeach
+                                        <th rowspan='2'>No</th>
+                                        <th rowspan='2'>Nama Alternatif</th>
+                                        <th colspan="{{ count($kriteria) }}" class="text-center">Nilai Kriteria</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        @forelse ($kriteria as $krit)
+                                            <th>{{ $krit->nama }}</th>
+                                        @empty
+                                            <th colspan="{{ count($kriteria) }}">Tidak ada data kriteria</th>
+                                        @endforelse
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($alternatif as $alter)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $alter->nama }}</td>
+                                            @foreach ($kriteria as $k)
+                                                @if ($k->sifat == 'cost')
+                                                    <td>
+                                                        <input type="number"
+                                                            name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
+                                                            class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror"
+                                                            placeholder="Masukkan nilai..."
+                                                            value="{{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) }}">
+                                                        @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <select
+                                                            name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
+                                                            class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror">
+                                                            <option value="">-- Pilih --</option>
+                                                            @foreach ($k->subKriteria as $sub)
+                                                                <option value="{{ $sub->id }}"
+                                                                    {{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) == $sub->id ? 'selected' : '' }}>
+                                                                    {{ $sub->nama }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </td>
+                                                @endif
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div class="d-flex justify-content-end gap-3 mt-4">
                             <button type="submit" class="btn btn-primary px-4 hstack gap-2">
