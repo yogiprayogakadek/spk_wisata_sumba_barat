@@ -38,8 +38,7 @@
             <div class="card mb-4">
                 <div class="card-header bg-transparent py-3 d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
-                        <iconify-icon icon="solar:chart-square-bold-duotone"
-                            class="fs-7 me-2 text-primary"></iconify-icon>
+                        <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-7 me-2 text-primary"></iconify-icon>
                         <div>
                             <h5 class="card-title mb-0">Perhitungan</h5>
                             <p class="card-subtitle mb-0">Nilai alternatif</p>
@@ -53,7 +52,7 @@
                 <div class="card-body">
                     <form action="{{ route('nilai.alternatif.store') }}" method="POST" id="form">
                         @csrf
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th rowspan='2'>No</th>
