@@ -400,6 +400,13 @@
             </div>
         @endif
 
+        @if (session('success'))
+            <div class="alert-error" style="background:#f0fdf4;border-color:#bbf7d0;color:#16a34a;">
+                <iconify-icon icon="solar:check-circle-bold-duotone" style="font-size:18px;flex-shrink:0;"></iconify-icon>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
