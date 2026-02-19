@@ -5,7 +5,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/backend/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
@@ -33,14 +33,16 @@
                         </div>
                         <div>
                             <h5 class="card-title mb-0">Daftar Sub Kriteria</h5>
-                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Manajemen data sub kriteria & bobot nilai</p>
+                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Manajemen data sub kriteria &
+                                bobot nilai</p>
                         </div>
                     </div>
-                    @if(auth()->user()->role === 'admin')
-                    <a href="{{ route('sub.kriteria.create') }}" class="btn btn-primary hstack gap-2 px-4 shadow-primary">
-                        <iconify-icon icon="solar:add-square-bold-duotone" class="fs-5"></iconify-icon>
-                        <span class="d-none d-sm-block">Tambah Sub Kriteria</span>
-                    </a>
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('sub.kriteria.create') }}"
+                            class="btn btn-primary hstack gap-2 px-4 shadow-primary">
+                            <iconify-icon icon="solar:add-square-bold-duotone" class="fs-5"></iconify-icon>
+                            <span class="d-none d-sm-block">Tambah Sub Kriteria</span>
+                        </a>
                     @endif
                 </div>
                 <div class="card-body">
@@ -52,8 +54,8 @@
                                     <th class="fw-semibold">Kode/Nama Kriteria</th>
                                     <th class="fw-semibold">Nama Sub Kriteria</th>
                                     <th class="fw-semibold text-center">Bobot</th>
-                                    @if(auth()->user()->role === 'admin')
-                                    <th class="fw-semibold text-center" width="150">Aksi</th>
+                                    @if (auth()->user()->role === 'admin')
+                                        <th class="fw-semibold text-center" width="150">Aksi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -68,7 +70,7 @@
 
 @push('script')
     <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script> --}}
 
     <script>
         $(document).ready(function() {
@@ -109,14 +111,14 @@
                             return `<span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-semibold">${data}</span>`;
                         }
                     },
-                    @if(auth()->user()->role === 'admin')
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center'
-                    },
+                    @if (auth()->user()->role === 'admin')
+                        {
+                            data: 'actions',
+                            name: 'actions',
+                            orderable: false,
+                            searchable: false,
+                            className: 'text-center'
+                        },
                     @endif
                 ],
                 language: {
@@ -149,7 +151,9 @@
                         $.ajax({
                             type: "DELETE",
                             url: url.replace(':id', id),
-                            data: { id: id },
+                            data: {
+                                id: id
+                            },
                             success: function(response) {
                                 Swal.fire({
                                     title: response.title,
@@ -157,7 +161,8 @@
                                     icon: response.icon
                                 });
                                 setTimeout(() => {
-                                    window.location.href = "{{ route('sub.kriteria.index') }}";
+                                    window.location.href =
+                                        "{{ route('sub.kriteria.index') }}";
                                 }, 1000);
                             },
                             error: function(response) {

@@ -5,7 +5,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/backend/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}"> --}}
     <style>
         .step-badge {
             display: inline-flex;

@@ -5,7 +5,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/backend/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}"> --}}
 @endpush
 
 @section('content')
@@ -130,30 +130,30 @@
             </div>
         </div>
     </div>
-@push('scripts')
-    <script>
-        document.getElementById('auto-fill')?.addEventListener('click', function() {
-            // Select all number inputs
-            const numberInputs = document.querySelectorAll('#form input[type="number"]');
-            numberInputs.forEach(input => {
-                // Random value between 1 and 100
-                input.value = Math.floor(Math.random() * 100) + 1;
-            });
+    @push('scripts')
+        <script>
+            document.getElementById('auto-fill')?.addEventListener('click', function() {
+                // Select all number inputs
+                const numberInputs = document.querySelectorAll('#form input[type="number"]');
+                numberInputs.forEach(input => {
+                    // Random value between 1 and 100
+                    input.value = Math.floor(Math.random() * 100) + 1;
+                });
 
-            // Select all select inputs
-            const selectInputs = document.querySelectorAll('#form select');
-            selectInputs.forEach(select => {
-                const options = Array.from(select.options).filter(opt => opt.value !== "");
-                if (options.length > 0) {
-                    const randomOption = options[Math.floor(Math.random() * options.length)];
-                    select.value = randomOption.value;
-                }
-            });
+                // Select all select inputs
+                const selectInputs = document.querySelectorAll('#form select');
+                selectInputs.forEach(select => {
+                    const options = Array.from(select.options).filter(opt => opt.value !== "");
+                    if (options.length > 0) {
+                        const randomOption = options[Math.floor(Math.random() * options.length)];
+                        select.value = randomOption.value;
+                    }
+                });
 
-            toastr.info("Form berhasil diisi secara otomatis", "Info", {
-                timeOut: 2000
+                toastr.info("Form berhasil diisi secara otomatis", "Info", {
+                    timeOut: 2000
+                });
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush
 @endsection

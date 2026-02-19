@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/styles.css') }}" />
     <script src="{{ asset('assets/backend/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/toastr.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
 
     {{-- STACK CSS --}}
     @stack('css')

@@ -18,6 +18,6 @@
         codeBlock.textContent = codeBlock.innerHTML;
     });
 </script>
-
+<script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script>
 {{-- STACK SCRIPT / JS --}}
 @stack('script')

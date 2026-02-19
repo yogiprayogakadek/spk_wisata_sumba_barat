@@ -5,7 +5,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/backend/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
@@ -33,14 +33,15 @@
                         </div>
                         <div>
                             <h5 class="card-title mb-0">Daftar Wisata</h5>
-                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Manajemen data tempat wisata</p>
+                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Manajemen data tempat wisata
+                            </p>
                         </div>
                     </div>
-                    @if(auth()->user()->role === 'admin')
-                    <a href="{{ route('wisata.create') }}" class="btn btn-primary hstack gap-2 px-4 shadow-primary">
-                        <iconify-icon icon="solar:add-square-bold-duotone" class="fs-5"></iconify-icon>
-                        <span class="d-none d-sm-block">Tambah Wisata</span>
-                    </a>
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('wisata.create') }}" class="btn btn-primary hstack gap-2 px-4 shadow-primary">
+                            <iconify-icon icon="solar:add-square-bold-duotone" class="fs-5"></iconify-icon>
+                            <span class="d-none d-sm-block">Tambah Wisata</span>
+                        </a>
                     @endif
                 </div>
                 <div class="card-body">
@@ -55,8 +56,8 @@
                                     <th class="fw-semibold text-center">Rating Google</th>
                                     <th class="fw-semibold">Url Google Map</th>
                                     <th class="fw-semibold text-center">Status</th>
-                                    @if(auth()->user()->role === 'admin')
-                                    <th class="fw-semibold text-center" width="150">Aksi</th>
+                                    @if (auth()->user()->role === 'admin')
+                                        <th class="fw-semibold text-center" width="150">Aksi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -71,7 +72,7 @@
 
 @push('script')
     <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script> --}}
 
     <script>
         $(document).ready(function() {
@@ -139,14 +140,14 @@
                             return `<span class="badge bg-${isActive ? 'success' : 'danger'}-subtle text-${isActive ? 'success' : 'danger'} border border-${isActive ? 'success' : 'danger'}-subtle fw-semibold">${data}</span>`;
                         }
                     },
-                    @if(auth()->user()->role === 'admin')
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center'
-                    },
+                    @if (auth()->user()->role === 'admin')
+                        {
+                            data: 'actions',
+                            name: 'actions',
+                            orderable: false,
+                            searchable: false,
+                            className: 'text-center'
+                        },
                     @endif
                 ],
                 language: {
@@ -179,7 +180,9 @@
                         $.ajax({
                             type: "DELETE",
                             url: url.replace(':id', id),
-                            data: { id: id },
+                            data: {
+                                id: id
+                            },
                             success: function(response) {
                                 Swal.fire({
                                     title: response.title,
@@ -187,7 +190,8 @@
                                     icon: response.icon
                                 });
                                 setTimeout(() => {
-                                    window.location.href = "{{ route('wisata.index') }}";
+                                    window.location.href =
+                                        "{{ route('wisata.index') }}";
                                 }, 1000);
                             },
                             error: function(response) {

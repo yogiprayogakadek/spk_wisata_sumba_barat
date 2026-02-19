@@ -68,9 +68,11 @@
         @stack('scripts')
 
         @if (session('show_device_alert'))
+            @php session()->forget('show_device_alert'); @endphp
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    if (window.innerWidth < 1024) {
+                    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    if (width < 992) {
                         Swal.fire({
                             title: 'Pengalaman Terbaik',
                             text: 'Halo! Aplikasi SPK Wisata Sumba Barat akan memberikan pengalaman yang jauh lebih maksimal jika diakses melalui PC atau Laptop. Yuk, coba buka di sana untuk fitur yang lebih lengkap!',

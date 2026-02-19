@@ -5,7 +5,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/backend/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/backend/css/sweetalert2.min.css') }}"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
@@ -42,7 +42,8 @@
                         </div>
                         <div>
                             <h5 class="card-title mb-0">Daftar User</h5>
-                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Kelola akun pengguna sistem SPK Wisata Sumba Barat</p>
+                            <p class="card-subtitle mb-0 text-muted" style="font-size:12px;">Kelola akun pengguna sistem SPK
+                                Wisata Sumba Barat</p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +72,7 @@
 
 @push('script')
     <script src="{{ asset('assets/backend/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/backend/js/sweetalert2.min.js') }}"></script> --}}
 
     <script>
         $(document).ready(function() {
@@ -80,8 +81,7 @@
                 serverSide: true,
                 searchDelay: 500,
                 ajax: '{{ route('user.index') }}',
-                columns: [
-                    {
+                columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         orderable: false,
