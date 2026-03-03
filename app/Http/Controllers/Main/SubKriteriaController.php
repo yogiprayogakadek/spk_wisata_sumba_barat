@@ -25,7 +25,7 @@ class SubKriteriaController extends Controller
 
     public function create()
     {
-        $kriteria = $this->kriteriaService->getAll(['id', 'nama', 'kode'], ['input_type' => 'sub'], []);
+        $kriteria = $this->kriteriaService->getAll(['id', 'nama', 'kode'], [], []);
         return view('main.sub_kriteria.create', compact('kriteria'));
     }
 

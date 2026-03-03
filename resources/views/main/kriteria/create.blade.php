@@ -77,22 +77,6 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="inputType" class="form-label fw-semibold">Input Type</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0">
-                                    <iconify-icon icon="solar:settings-line-duotone" class="fs-5"></iconify-icon>
-                                </span>
-                                <input type="text"
-                                    class="form-control border-start-0 ps-0 @error('input_type') is-invalid @enderror"
-                                    id="inputType" name="input_type" placeholder="otomatis akan terisi..."
-                                    value="{{ old('input_type') }}" readonly>
-                                @error('input_type')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
 
                         <div class="mb-4">
                             <label for="bobot" class="form-label fw-semibold">Bobot Kriteria</label>
@@ -129,16 +113,7 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#sifat').change(function() {
-                let value = $(this).val();
-
-                if (value) {
-                    let type = (value === 'cost') ? 'numeric' : 'sub';
-                    $('#inputType').val(type);
-                } else {
-                    $('#inputType').val('')
-                }
-            });
+            // Tidak ada JS khusus diperlukan
         });
     </script>
 @endpush

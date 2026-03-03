@@ -53,7 +53,6 @@
                                     <th class="fw-semibold">Kode</th>
                                     <th class="fw-semibold">Nama Kriteria</th>
                                     <th class="fw-semibold text-center">Sifat</th>
-                                    <th class="fw-semibold text-center">Input Type</th>
                                     <th class="fw-semibold text-center">Bobot</th>
                                     @if (auth()->user()->role === 'admin')
                                         <th class="fw-semibold text-center" width="150">Aksi</th>
@@ -111,14 +110,6 @@
                         render: function(data) {
                             let isBenefit = data === 'benefit';
                             return `<span class="badge bg-${isBenefit ? 'success' : 'danger'}-subtle text-${isBenefit ? 'success' : 'danger'} border border-${isBenefit ? 'success' : 'danger'}-subtle fw-semibold">${data.charAt(0).toUpperCase() + data.slice(1)}</span>`;
-                        }
-                    },
-                    {
-                        data: 'input_type',
-                        name: 'input_type',
-                        className: 'text-center',
-                        render: function(data) {
-                            return `<span class="badge bg-info-subtle text-info border border-info-subtle fw-semibold">${data ?? '-'}</span>`;
                         }
                     },
                     {

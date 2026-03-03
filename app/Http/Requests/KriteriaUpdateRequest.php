@@ -35,7 +35,6 @@ class KriteriaUpdateRequest extends FormRequest
                 Rule::unique('kriteria', 'nama')->ignore($this->id)
             ],
             'sifat' => 'required|string|in:cost,benefit',
-            'input_type' => 'required|string|in:numeric,sub',
             'bobot' => [
                 'required',
                 'numeric',

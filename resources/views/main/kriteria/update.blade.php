@@ -78,22 +78,6 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="inputType" class="form-label fw-semibold">Input Type</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0">
-                                    <iconify-icon icon="solar:settings-line-duotone" class="fs-5"></iconify-icon>
-                                </span>
-                                <input type="text"
-                                    class="form-control border-start-0 ps-0 @error('input_type') is-invalid @enderror"
-                                    id="inputType" name="input_type" placeholder="otomatis akan terisi..."
-                                    value="{{ $kriteria->input_type }}" readonly>
-                                @error('input_type')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
 
                         <div class="mb-4">
                             <label for="bobot" class="form-label fw-semibold">Bobot Kriteria</label>
@@ -128,47 +112,4 @@
 @endsection
 
 @push('script')
-    <script>
-        $(document).ready(function() {
-            const originalSifat = '{{ $kriteria->sifat }}';
-
-            $('#sifat').change(function() {
-                let value = $(this).val();
-
-                if (value && value != '') {
-                    if (value == 'cost') {
-                        $('#inputType').val('numeric');
-                    } else {
-                        $('#inputType').val('sub');
-                    }
-                } else {
-                    $(this).val('');
-                    $('#inputType').val('');
-                }
-            });
-
-            $('#form').on('submit', function(e) {
-                const newSifat = $('#sifat').val();
-
-                // Jika sebelumnya benefit (sub) dan sekarang diubah ke cost (numeric)
-                if (originalSifat === 'benefit' && newSifat === 'cost') {
-                    e.preventDefault();
-                    Swal.fire({
-                        title: 'Perhatian!',
-                        html: 'Mengubah sifat dari <b>Benefit</b> ke <b>Cost</b> akan <b>menghapus semua data Sub Kriteria</b> yang terhubung dengan kriteria ini secara permanen.<br><br>Lanjutkan?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Ya, Ubah & Hapus Sub Kriteria',
-                        cancelButtonText: 'Batal',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $('#form').off('submit').submit();
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 @endpush

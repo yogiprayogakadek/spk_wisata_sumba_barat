@@ -15,7 +15,7 @@ class KriteriaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return $this->kriteriaService->getDataTable(['id', 'kode', 'nama', 'sifat', 'input_type', 'bobot']);
+            return $this->kriteriaService->getDataTable(['id', 'kode', 'nama', 'sifat', 'bobot']);
         }
 
         return view('main.kriteria.index');
@@ -40,7 +40,7 @@ class KriteriaController extends Controller
 
     public function show($id)
     {
-        $kriteria = $this->kriteriaService->findById(['id', 'kode', 'nama', 'sifat', 'input_type', 'bobot'], $id);
+        $kriteria = $this->kriteriaService->findById(['id', 'kode', 'nama', 'sifat', 'bobot'], $id);
         return view('main.kriteria.update', compact('kriteria'));
     }
 

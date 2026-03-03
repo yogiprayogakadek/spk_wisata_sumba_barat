@@ -25,7 +25,6 @@ class KriteriaStoreRequest extends FormRequest
             'kode' => 'required|string|max:5|unique:kriteria,kode',
             'nama' => 'required|string|max:100|unique:kriteria,nama',
             'sifat' => 'required|string|in:cost,benefit',
-            'input_type' => 'required|string|in:numeric,sub',
             'bobot' => [
                 'required',
                 'numeric',
