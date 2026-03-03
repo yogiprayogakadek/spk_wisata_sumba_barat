@@ -83,19 +83,10 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $alter->nama }}</td>
                                             @foreach ($kriteria as $k)
-                                                @if ($k->sifat == 'cost')
-                                                    <td>
-                                                        <input type="number"
-                                                            name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
-                                                            class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror"
-                                                            placeholder="Masukkan nilai..."
-                                                            value="{{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) }}">
-                                                        @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
-                                                            <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </td>
-                                                @else
-                                                    <td>
+                                                <td>
+                                                    @if ($k->subKriteria->isEmpty())
+                                                        <span class="text-muted fst-italic" style="font-size:12px;">Belum ada sub kriteria</span>
+                                                    @else
                                                         <select
                                                             name="nilai[{{ $alter->id }}][{{ $k->sifat }}][{{ $k->id }}]"
                                                             class="form-control @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) is-invalid @enderror">
@@ -103,15 +94,15 @@
                                                             @foreach ($k->subKriteria as $sub)
                                                                 <option value="{{ $sub->id }}"
                                                                     {{ old('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id) == $sub->id ? 'selected' : '' }}>
-                                                                    {{ $sub->nama }}
+                                                                    {{ $sub->nama }} (Bobot: {{ $sub->bobot }})
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                         @error('nilai.' . $alter->id . '.' . $k->sifat . '.' . $k->id)
                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                         @enderror
-                                                    </td>
-                                                @endif
+                                                    @endif
+                                                </td>
                                             @endforeach
                                         </tr>
                                     @endforeach
@@ -130,17 +121,9 @@
             </div>
         </div>
     </div>
-    @push('scripts')
+    @push('script')
         <script>
             document.getElementById('auto-fill')?.addEventListener('click', function() {
-                // Select all number inputs
-                const numberInputs = document.querySelectorAll('#form input[type="number"]');
-                numberInputs.forEach(input => {
-                    // Random value between 1 and 100
-                    input.value = Math.floor(Math.random() * 100) + 1;
-                });
-
-                // Select all select inputs
                 const selectInputs = document.querySelectorAll('#form select');
                 selectInputs.forEach(select => {
                     const options = Array.from(select.options).filter(opt => opt.value !== "");
