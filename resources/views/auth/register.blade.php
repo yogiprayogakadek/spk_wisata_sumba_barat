@@ -34,17 +34,60 @@
             min-height: 100vh;
         }
 
-        .login-left-bg {
+        /* ── CAROUSEL ── */
+        .carousel-bg {
             position: absolute;
             inset: 0;
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(10, 40, 60, 0.20) 0%,
-                    rgba(10, 40, 60, 0.70) 55%,
-                    rgba(5, 20, 35, 0.92) 100%
-                ),
-                url('https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200&q=80') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 40, 60, 0.20) 0%,
+                rgba(10, 40, 60, 0.70) 55%,
+                rgba(5, 20, 35, 0.92) 100%
+            );
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #fff;
+            transform: scale(1.3);
         }
 
         .login-left-content {
@@ -402,7 +445,16 @@
 
     {{-- LEFT PANEL --}}
     <div class="login-left">
-        <div class="login-left-bg"></div>
+        <div class="carousel-bg" id="regCarousel">
+            <div class="carousel-slide active" style="background-image: url('{{ asset('assets/images/sumba/1.jpg') }}')"></div>
+            <div class="carousel-slide" style="background-image: url('{{ asset('assets/images/sumba/2.jpg') }}')"></div>
+            <div class="carousel-slide" style="background-image: url('{{ asset('assets/images/sumba/3.jpg') }}')"></div>
+        </div>
+        <div class="carousel-dots" id="regDots">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+        </div>
         <div class="login-left-content">
             <div class="spk-badge">
                 <span></span>
@@ -587,6 +639,26 @@
 
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <script>
+        (function() {
+            const slides = document.querySelectorAll('#regCarousel .carousel-slide');
+            const dots   = document.querySelectorAll('#regDots .carousel-dot');
+            let current  = 0;
+
+            function goTo(idx) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (idx + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            dots.forEach(function(dot, i) {
+                dot.addEventListener('click', function() { goTo(i); });
+            });
+
+            setInterval(function() { goTo(current + 1); }, 5000);
+        })();
+
         function togglePw(id, icon) {
             const input = document.getElementById(id);
             const isHidden = input.type === 'password';
