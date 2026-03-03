@@ -78,7 +78,15 @@
                 processing: true,
                 serverSide: true,
                 searchDelay: 500,
-                ajax: '{{ route('sub.kriteria.datatable') }}',
+                ajax: {
+                    url: '{{ route('sub.kriteria.datatable') }}',
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                    error: function(xhr, error, thrown) {
+                        console.error('[DataTables] Status:', xhr.status);
+                        console.error('[DataTables] Response:', xhr.responseText.substring(0, 500));
+                        alert('DataTable error ' + xhr.status + ':\n' + xhr.responseText.substring(0, 300));
+                    }
+                },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
