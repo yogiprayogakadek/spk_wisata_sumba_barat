@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\SubKriteria;
 use App\Repositories\KriteriaRepository;
 use Yajra\DataTables\DataTables;
 
@@ -26,6 +27,13 @@ class KriteriaService
 
     public function update(int $id, array $data)
     {
+        $kriteria = $this->kriteriaRepository->findById(['id', 'input_type'], $id);
+
+        // Jika input_type berubah dari 'sub' ke tipe lain, hapus sub_kriteria terkait
+        if ($kriteria->input_type === 'sub' && ($data['input_type'] ?? null) !== 'sub') {
+            SubKriteria::where('kriteria_id', $id)->delete();
+        }
+
         return $this->kriteriaRepository->update($id, $data);
     }
 

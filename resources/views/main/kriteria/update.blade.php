@@ -130,6 +130,8 @@
 @push('script')
     <script>
         $(document).ready(function() {
+            const originalSifat = '{{ $kriteria->sifat }}';
+
             $('#sifat').change(function() {
                 let value = $(this).val();
 
@@ -141,7 +143,30 @@
                     }
                 } else {
                     $(this).val('');
-                    $('#inputType').val('')
+                    $('#inputType').val('');
+                }
+            });
+
+            $('#form').on('submit', function(e) {
+                const newSifat = $('#sifat').val();
+
+                // Jika sebelumnya benefit (sub) dan sekarang diubah ke cost (numeric)
+                if (originalSifat === 'benefit' && newSifat === 'cost') {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        html: 'Mengubah sifat dari <b>Benefit</b> ke <b>Cost</b> akan <b>menghapus semua data Sub Kriteria</b> yang terhubung dengan kriteria ini secara permanen.<br><br>Lanjutkan?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, Ubah & Hapus Sub Kriteria',
+                        cancelButtonText: 'Batal',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#form').off('submit').submit();
+                        }
+                    });
                 }
             });
         });
