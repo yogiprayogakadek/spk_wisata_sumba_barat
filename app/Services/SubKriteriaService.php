@@ -36,7 +36,7 @@ class SubKriteriaService
 
     public function getDataTable(array $fields = ['*'])
     {
-        $data = $this->getAll($fields, [], []);
+        $data = $this->getAll($fields, [], ['kriteria']);
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('kode_kriteria', function ($row) {
