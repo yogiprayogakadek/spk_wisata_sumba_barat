@@ -15,11 +15,12 @@ class SubKriteriaController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return $this->subKriteriaService->getDataTable(['id', 'kriteria_id', 'nama', 'bobot']);
-        }
-
         return view('main.sub_kriteria.index');
+    }
+
+    public function datatable(Request $request)
+    {
+        return $this->subKriteriaService->getDataTable(['id', 'kriteria_id', 'nama', 'bobot']);
     }
 
     public function create()

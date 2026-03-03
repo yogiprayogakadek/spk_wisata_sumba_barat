@@ -78,7 +78,7 @@
                 processing: true,
                 serverSide: true,
                 searchDelay: 500,
-                ajax: '{{ route('sub.kriteria.index') }}',
+                ajax: '{{ route('sub.kriteria.datatable') }}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     // Sub Kriteria
     Route::controller(SubKriteriaController::class)->prefix('/sub-kriteria')->name('sub.kriteria.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/datatable', 'datatable')->name('datatable');
         Route::middleware(['checkRole:admin'])->group(function () {
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
