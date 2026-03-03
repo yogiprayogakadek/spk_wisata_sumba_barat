@@ -30,7 +30,7 @@ class NilaiAlternatifController extends Controller
     {
         $alternatif = $this->wisataService->getAll(['is_active' => true], ['id', 'nama']);
         $kriteria = $this->kriteriaService->getAll(['id', 'nama', 'sifat'], [], [
-            'subKriteria:id,kriteria_id,nama'
+            'subKriteria:id,kriteria_id,nama,bobot'
         ]);
         return view('main.nilai_alternatif.create', compact('alternatif', 'kriteria'));
     }
