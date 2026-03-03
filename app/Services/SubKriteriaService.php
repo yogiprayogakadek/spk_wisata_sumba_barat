@@ -36,29 +36,41 @@ class SubKriteriaService
 
     public function getDataTable(array $fields = ['*'])
     {
-        $data = $this->getAll($fields, [], ['kriteria']);
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('kode_kriteria', function ($row) {
-                return $row->kriteria->kode . '/' . $row->kriteria->nama;
-            })
-            ->addColumn('actions', function ($row) {
-                return '
-            <a href="' . route('sub.kriteria.show', $row->id) . '">
+        try {
+            $data = $this->getAll($fields, [], ['kriteria']);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('kode_kriteria', function ($row) {
+                    if (!$row->kriteria) {
+                        return '<span class="text-muted">-</span>';
+                    }
+                    return $row->kriteria->kode . '/' . $row->kriteria->nama;
+                })
+                ->addColumn('actions', function ($row) {
+                    return '
+                <a href="' . route('sub.kriteria.show', $row->id) . '">
+                    <button type="button"
+                        class="justify-content-center w-80 btn mb-1 bg-primary-subtle text-primary">
+                        <i class="ti ti-pencil fs-4 me-2"></i>
+                        Edit
+                    </button>
+                </a>
                 <button type="button"
-                    class="justify-content-center w-80 btn mb-1 bg-primary-subtle text-primary">
-                    <i class="ti ti-pencil fs-4 me-2"></i>
-                    Edit
-                </button>
-            </a>
-            <button type="button"
-                    class="justify-content-center w-80 btn mb-1 bg-danger-subtle text-danger btn-hapus" data-id=' . $row->id . '>
-                    <i class="ti ti-trash fs-4 me-2"></i>
-                    Hapus
-                </button>
-            ';
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
+                        class="justify-content-center w-80 btn mb-1 bg-danger-subtle text-danger btn-hapus" data-id=' . $row->id . '>
+                        <i class="ti ti-trash fs-4 me-2"></i>
+                        Hapus
+                    </button>
+                ';
+                })
+                ->rawColumns(['actions', 'kode_kriteria'])
+                ->make(true);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessage(),
+                'file'    => $e->getFile(),
+                'line'    => $e->getLine(),
+            ], 500);
+        }
     }
 }
