@@ -16,7 +16,7 @@ class WisataSeeder extends Seeder
                 'alamat' => 'Hoba Wawi, Wanokaka, Kabupaten Sumba Barat',
                 'foto' => '',
                 'rating_google' => 4.8,
-                'url_map_google' => 'https://maps.app.goo.gl/nihiwatu',
+                'url_map_google' => 'https://maps.app.goo.gl/4Yh3EgXsMoVhMQ5LA',
                 'is_active' => 1,
             ],
             [
@@ -25,7 +25,7 @@ class WisataSeeder extends Seeder
                 'alamat' => 'Tebara, Kota Waikabubak, Kabupaten Sumba Barat',
                 'foto' => '',
                 'rating_google' => 4.7,
-                'url_map_google' => 'https://maps.app.goo.gl/praiijing',
+                'url_map_google' => 'https://maps.app.goo.gl/DoG6STDPT3J4BMZt7',
                 'is_active' => 1,
             ],
             [
@@ -34,7 +34,7 @@ class WisataSeeder extends Seeder
                 'alamat' => 'Manurara, Katikutana Selatan, Kabupaten Sumba Tengah',
                 'foto' => '',
                 'rating_google' => 4.6,
-                'url_map_google' => 'https://maps.app.goo.gl/lapopu',
+                'url_map_google' => 'https://maps.app.goo.gl/oiTaDMActrb5fsMk8',
                 'is_active' => 1,
             ],
             [
@@ -43,7 +43,7 @@ class WisataSeeder extends Seeder
                 'alamat' => 'Rua, Wanokaka, Kabupaten Sumba Barat',
                 'foto' => '',
                 'rating_google' => 4.5,
-                'url_map_google' => 'https://maps.app.goo.gl/ruabeach',
+                'url_map_google' => 'https://maps.app.goo.gl/idsogebrAw617d7J6',
                 'is_active' => 1,
             ],
             [
@@ -52,7 +52,7 @@ class WisataSeeder extends Seeder
                 'alamat' => 'Pambotanjara, Waingapu, Kabupaten Sumba Timur',
                 'foto' => '',
                 'rating_google' => 4.7,
-                'url_map_google' => 'https://maps.app.goo.gl/wairinding',
+                'url_map_google' => 'https://maps.app.goo.gl/CVweeKYmBzgdDiN28',
                 'is_active' => 1,
             ],
         ];

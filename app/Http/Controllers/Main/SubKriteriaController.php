@@ -43,7 +43,7 @@ class SubKriteriaController extends Controller
 
     public function show($id)
     {
-        $kriteria = $this->kriteriaService->getAll(['id', 'nama', 'kode'], ['input_type' => 'sub'], []);
+        $kriteria = $this->kriteriaService->getAll(['id', 'nama', 'kode'], [], []);
         $subKriteria = $this->subKriteriaService->findById(['id', 'kriteria_id', 'nama', 'bobot'], $id);
         return view('main.sub_kriteria.update', compact('subKriteria', 'kriteria'));
     }

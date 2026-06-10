@@ -11,7 +11,6 @@ class Kriteria extends Model
         'kode',
         'nama',
         'sifat',
-        'input_type',
         'bobot'
     ];
 

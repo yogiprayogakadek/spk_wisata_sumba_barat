@@ -22,11 +22,13 @@ class NilaiAlternatifSeeder extends Seeder
                     $subKriteriaId = null;
                     $nilai = 0;
 
-                    if ($kriteria->input_type === 'numeric') {
+                    if (in_array($kriteria->kode, ['C1', 'C2', 'C4'])) {
                         if ($kriteria->kode === 'C1') {
                             $nilai = rand(5, 50) * 1000;
                         } elseif ($kriteria->kode === 'C2') {
                             $nilai = rand(1, 100);
+                        } elseif ($kriteria->kode === 'C4') {
+                            $nilai = rand(1, 5);
                         } else {
                             $nilai = rand(1, 100);
                         }

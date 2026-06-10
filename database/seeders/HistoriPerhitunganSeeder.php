@@ -19,7 +19,7 @@ class HistoriPerhitunganSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             HistoriPerhitungan::create([
                 'user_id' => $users[array_rand($users)],
-                'tanggal' => Carbon::now()->subDays(rand(0, 30))->format('Y-m-d H:i:s'),
+                'tanggal' => Carbon::now()->subDays(rand(0, 30))->format('Y-m-d'),
             ]);
         }
     }

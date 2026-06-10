@@ -18,13 +18,13 @@ class SubKriteriaSeeder extends Seeder
                 ['nama' => 'Kurang', 'bobot' => 2],
                 ['nama' => 'Tidak Ada', 'bobot' => 1],
             ],
-            'C4' => [
-                ['nama' => 'Sangat Indah', 'bobot' => 5],
-                ['nama' => 'Indah', 'bobot' => 4],
-                ['nama' => 'Cukup Indah', 'bobot' => 3],
-                ['nama' => 'Biasa Saja', 'bobot' => 2],
-                ['nama' => 'Kurang Menarik', 'bobot' => 1],
-            ],
+            // 'C4' => [
+            //     ['nama' => 'Sangat Indah', 'bobot' => 5],
+            //     ['nama' => 'Indah', 'bobot' => 4],
+            //     ['nama' => 'Cukup Indah', 'bobot' => 3],
+            //     ['nama' => 'Biasa Saja', 'bobot' => 2],
+            //     ['nama' => 'Kurang Menarik', 'bobot' => 1],
+            // ],
             'C5' => [
                 ['nama' => 'Sangat Mudah', 'bobot' => 5],
                 ['nama' => 'Mudah', 'bobot' => 4],
