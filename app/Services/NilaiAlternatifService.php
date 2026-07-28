@@ -21,15 +21,25 @@ class NilaiAlternatifService
 
     public function create(array $nilai, int $historiId)
     {
+        $subKriteria = \App\Models\SubKriteria::all()->keyBy('id');
+
         $data = [];
         foreach ($nilai as $wisata_id => $sifat_list) {
             foreach ($sifat_list as $sifat => $kriteria_list) {
                 foreach ($kriteria_list as $kriteria_id => $skor) {
+                    if (isset($subKriteria[$skor])) {
+                        $sub_kriteria_id = $skor;
+                        $nilai_val = $subKriteria[$skor]->bobot;
+                    } else {
+                        $sub_kriteria_id = null;
+                        $nilai_val = $skor;
+                    }
+
                     $data[] = [
                         'wisata_id' => $wisata_id,
-                        'nilai' => $sifat == "cost" ? $skor : null,
+                        'nilai' => $nilai_val,
                         'kriteria_id' => $kriteria_id,
-                        'sub_kriteria_id' => $sifat == "benefit" ? $skor : null,
+                        'sub_kriteria_id' => $sub_kriteria_id,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
