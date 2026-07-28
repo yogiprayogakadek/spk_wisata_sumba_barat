@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
             SubKriteriaSeeder::class,
             WisataSeeder::class,
             HistoriPerhitunganSeeder::class,
-            NilaiAlternatifSeeder::class,
+            // NilaiAlternatifSeeder::class,
         ]);
     }
 }

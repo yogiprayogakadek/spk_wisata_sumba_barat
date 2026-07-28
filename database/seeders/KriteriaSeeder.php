@@ -12,33 +12,21 @@ class KriteriaSeeder extends Seeder
         $kriteria = [
             [
                 'kode' => 'C1',
-                'nama' => 'Harga Tiket',
-                'sifat' => 'cost',
-                'bobot' => 25,
+                'nama' => 'Waktu Tempuh (km)',
+                'sifat' => 'benefit',
+                'bobot' => 30,
             ],
             [
                 'kode' => 'C2',
-                'nama' => 'Jarak/Lokasi',
+                'nama' => 'Tiket Masuk',
                 'sifat' => 'cost',
-                'bobot' => 20,
+                'bobot' => 30,
             ],
             [
                 'kode' => 'C3',
-                'nama' => 'Fasilitas',
+                'nama' => 'Popularitas',
                 'sifat' => 'benefit',
-                'bobot' => 20,
-            ],
-            [
-                'kode' => 'C4',
-                'nama' => 'Rating',
-                'sifat' => 'cost',
-                'bobot' => 20,
-            ],
-            [
-                'kode' => 'C5',
-                'nama' => 'Aksesibilitas',
-                'sifat' => 'benefit',
-                'bobot' => 15,
+                'bobot' => 40,
             ],
         ];
 

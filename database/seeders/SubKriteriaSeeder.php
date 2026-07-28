@@ -11,26 +11,28 @@ class SubKriteriaSeeder extends Seeder
     public function run(): void
     {
         $subKriteria = [
-            'C3' => [
-                ['nama' => 'Sangat Lengkap', 'bobot' => 5],
-                ['nama' => 'Lengkap', 'bobot' => 4],
-                ['nama' => 'Cukup', 'bobot' => 3],
-                ['nama' => 'Kurang', 'bobot' => 2],
-                ['nama' => 'Tidak Ada', 'bobot' => 1],
+            'C1' => [
+                ['nama' => '≤ 30 km', 'bobot' => 5],
+                ['nama' => '31 – 45 km', 'bobot' => 4],
+                ['nama' => '46–60 km', 'bobot' => 3],
+                ['nama' => '61–75 km', 'bobot' => 2],
+                ['nama' => '> 75 km', 'bobot' => 1],
             ],
-            // 'C4' => [
-            //     ['nama' => 'Sangat Indah', 'bobot' => 5],
-            //     ['nama' => 'Indah', 'bobot' => 4],
-            //     ['nama' => 'Cukup Indah', 'bobot' => 3],
-            //     ['nama' => 'Biasa Saja', 'bobot' => 2],
-            //     ['nama' => 'Kurang Menarik', 'bobot' => 1],
-            // ],
-            'C5' => [
-                ['nama' => 'Sangat Mudah', 'bobot' => 5],
-                ['nama' => 'Mudah', 'bobot' => 4],
-                ['nama' => 'Sedang', 'bobot' => 3],
-                ['nama' => 'Sulit', 'bobot' => 2],
-                ['nama' => 'Sangat Sulit', 'bobot' => 1],
+
+            'C2' => [
+                ['nama' => 'Gratis', 'bobot' => 5],
+                ['nama' => 'Rp 1.000 – Rp 5.000', 'bobot' => 4],
+                ['nama' => 'Rp 5.001 – Rp 10.000', 'bobot' => 3],
+                ['nama' => 'Rp 10.001 – Rp 20.000', 'bobot' => 2],
+                ['nama' => '> Rp 20.000', 'bobot' => 1],
+            ],
+
+            'C3' => [
+                ['nama' => '4,8 – 5,0', 'bobot' => 5],
+                ['nama' => '4,6 – 4,7', 'bobot' => 4],
+                ['nama' => '4,4 – 4,5', 'bobot' => 3],
+                ['nama' => '4,0 – 4,3', 'bobot' => 2],
+                ['nama' => '< 4,0', 'bobot' => 1],
             ],
         ];
 
